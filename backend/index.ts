@@ -12,11 +12,11 @@ app.use("/v1/videos", videoRoutes);
 app.listen(process.env.PORT, () => {
   console.log("listening on port " + process.env.PORT);
 
-  
+
   mongoose
-    .connect(process.env.MONGO_URI)
+    .connect("mongodb://127.0.0.1:27017/XFlix")
     .then(() => {
-      console.log("Connected to DB at " + process.env.MONGO_URI);
+      console.log("Connected to DB at " + "mongodb://127.0.0.1:27017/XFlix");
     })
     .catch(() => {
       console.log("Error connecting to DB");

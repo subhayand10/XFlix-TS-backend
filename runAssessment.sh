@@ -1,6 +1,6 @@
-# setup for pnpm to pickup npm in script
- shopt -s expand_aliases
- . ~/.bash_aliases
+# # setup for pnpm to pickup npm in script
+#  shopt -s expand_aliases
+#  . ~/.bash_aliases
 
 NODE_PORT=8082
 PROJECT_DIR="$PWD"
@@ -14,7 +14,7 @@ set -e
  trap "echo 'Cleaning up resources' && trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 # 1. Start Node app
-mongo xflix --eval "db.dropDatabase()"
+mongosh xflix --eval "db.dropDatabase()"
 
 if [ ! -d "$NODE_DIR" ]; then
   echo "Can't find $NODE_DIR directory"
@@ -27,7 +27,7 @@ then
   echo "Killed application running on $NODE_PORT"
 fi
 
-cd $PROJECT_DIR/backend && npm install && pm2 start npm -- start
+cd $PROJECT_DIR/backend && npm install &&  start npm -- run serve
 
 while ! netstat -tna | grep 'LISTEN\>' | grep -q $NODE_PORT; do
   echo "waiting for Node application to start on port $NODE_PORT"
