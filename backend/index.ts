@@ -11,6 +11,7 @@ app.use("/v1/videos", videoRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log("listening on port " + process.env.PORT);
+  
   mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
